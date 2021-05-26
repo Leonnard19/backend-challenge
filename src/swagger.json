@@ -1,0 +1,265 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Places - Documentation",
+    "description": "This is an 'places i want to visit' API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "leo@fake.com"
+    }
+  },
+  "paths": {
+    "/destinations/new": {
+      "post": {
+        "tags": [
+          "Destinations"
+        ],
+        "summary": "Create a destination",
+        "description": "Create a new destination",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                   "id": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      },
+                      "location": {
+                        "type": "string"
+                      },
+                      "meta": {
+                        "type": "string"
+                      },
+                      "flag_url": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                },
+                "example": {
+                  "country": "Canada",
+                  "location": "Vancouver",
+                  "meta" : "01/2050",
+                  "flag_url" : "https://www.countryflags.io/be/flat/64.png"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                    "properties": {
+                      "country": {
+                        "type": "string"
+                      },
+                      "location": {
+                        "type": "string"
+                      },
+                      "meta": {
+                        "type": "string"
+                      },
+                      "flag_url": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+          "500": {
+            "description": "Destination already exists!"
+          }
+        }
+      }
+    },
+
+    "/destinations/all" : {
+      "get": {
+        "tags": [
+          "Destinations"
+        ],
+        "summary": "List all destinations",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      },
+                      "location": {
+                        "type": "string"
+                      },
+                      "meta": {
+                        "type": "string"
+                      },
+                      "flag_url": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/destinations/find/{id}": {
+      "get": {
+        "tags": [
+          "Destinations"
+        ],
+        "summary": "Find a destination",
+        "description": "Find a destination by ID",
+        "parameters" : [
+          {
+          "name" : "id",
+          "in" : "path",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                    "properties" : {
+                       "id": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "string"
+                      },
+                      "location": {
+                        "type": "string"
+                      },
+                      "meta": {
+                        "type": "string"
+                      },
+                      "flag_url": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+          }
+        }
+      }
+    },
+
+    "/destinations/update/{id}": {
+      "put": {
+        "tags": [
+          "Destinations"
+        ],
+        "summary": "Update a destination",
+        "description": "Update a specific destination",
+        "parameters" : [
+          {
+          "name" : "id",
+          "in" : "path",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                      "location": {
+                        "type": "string"
+                      },
+                      "meta": {
+                        "type": "string"
+                      }
+                },
+                "example": {
+                  "location": "Somewhere",
+                  "meta" : "01/2050"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated"
+          },
+          "500": {
+            "description": "Destination already exists."
+          }
+        }
+      }
+    },
+
+    "/destinations/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Destinations"
+        ],
+        "summary": "Delete a destination",
+        "description": "Delete a specific destination",
+        "parameters" : [
+          {
+          "name" : "id",
+          "in" : "path",
+          "schema" : {
+            "type" : "string"
+          }
+        }
+      ],
+        "responses": {
+          "204": {
+            "description": "Deleted"
+          },
+          "500": {
+            "description": "Destination does not exist."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Executar a aplicação -> yarn dev
+Documentação (swagger) disponível na rota -> localhost:3333/api-docs/
